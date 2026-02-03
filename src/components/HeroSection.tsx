@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight, Sparkles } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { CategoryTabs } from "./CategoryTabs";
 import { SearchPanel } from "./SearchPanel";
 
 import heroMaldives from "@/assets/hero-maldives.jpg";
@@ -39,88 +38,101 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col">
-      {/* Background Images */}
-      {heroSlides.map((slide, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            currentSlide === index ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 hero-overlay" />
+    <section className="relative flex flex-col items-center">
+      {/* Hero Container */}
+      <div
+        className="relative w-full overflow-hidden h-[283px] lg:h-[898.69px] mt-20 lg:mt-[-49.06px] rounded-b-[15px] lg:rounded-[25px]"
+        style={{
+          maxWidth: "1440.4px",
+        }}
+      >
+        {/* Background Images */}
+        {heroSlides.map((slide, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 z-0 transition-opacity duration-1000 overflow-hidden ${currentSlide === index ? "opacity-100" : "opacity-0"
+              }`}
+          >
+            <img
+              src={slide.image}
+              alt={slide.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-black/40" />
+          </div>
+        ))}
+
+        {/* Navigation Arrows */}
+        <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={prevSlide}
+            className="absolute left-4 lg:left-12 top-1/2 -translate-y-1/2 pointer-events-auto text-white/50 hover:text-white border border-white/30 hover:border-white rounded-full h-8 w-8 lg:h-10 lg:w-10 bg-transparent hover:bg-white/10 transition-all duration-300"
+          >
+            <ChevronLeft className="h-4 w-4 stroke-1" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={nextSlide}
+            className="absolute right-4 lg:right-12 top-1/2 -translate-y-1/2 pointer-events-auto text-white/50 hover:text-white border border-white/30 hover:border-white rounded-full h-8 w-8 lg:h-10 lg:w-10 bg-transparent hover:bg-white/10 transition-all duration-300"
+          >
+            <ChevronRight className="h-4 w-4 stroke-1" />
+          </Button>
         </div>
-      ))}
 
-      {/* Navigation Arrows */}
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={prevSlide}
-        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10 h-12 w-12"
-      >
-        <ChevronLeft className="h-8 w-8" />
-      </Button>
-      <Button
-        variant="ghost"
-        size="icon"
-        onClick={nextSlide}
-        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10 h-12 w-12"
-      >
-        <ChevronRight className="h-8 w-8" />
-      </Button>
+        {/* Hero Content */}
+        <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-4 pt-4 lg:pt-0">
+          {/* Inspire Badge */}
+          <div
+            className="absolute top-0 lg:top-[129px] left-1/2 -translate-x-1/2 z-30 bg-[#98D5D4] rounded-b-[5px] lg:rounded-b-[20px] shadow-sm flex items-center justify-center 
+                       w-[80px] h-[12px] lg:w-[286px] lg:h-[44px]"
+          >
+            <span
+              className="uppercase font-medium text-[#000000] leading-none 
+                         text-[5px] lg:text-[20px]"
+              style={{ fontFamily: 'Inter' }}
+            >
+              INSPIRE TO TRAVEL
+            </span>
+          </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center pt-20 lg:pt-24">
-        <div className="container mx-auto px-4 lg:px-8">
-          {/* Hero Text */}
-          <div className="text-center mb-8 lg:mb-12">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-              <Sparkles className="h-4 w-4 text-accent" />
-              <span className="text-accent text-sm font-medium">Inspire to Travel</span>
-            </div>
-
-            {/* Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-primary-foreground mb-4 lg:mb-6">
-              {heroSlides[currentSlide].title}
+          {/* Text Content */}
+          <div className="text-center max-w-6xl mx-auto space-y-2 lg:space-y-6 flex flex-col items-center mt-6 lg:mt-0">
+            <h1
+              className="font-['Inter'] font-semibold text-center flex flex-col items-center justify-center text-[28px] lg:text-[74px] leading-tight lg:leading-[80px]"
+            >
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage: 'linear-gradient(180deg, #98D5D4 0%, #FFFFFF 100%)',
+                  backgroundClip: 'text',
+                  WebkitBackgroundClip: 'text',
+                  color: 'transparent'
+                }}
+              >
+                Discover Your Next
+              </span>
+              <span className="text-white">
+                Great Adventure
+              </span>
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl text-primary-foreground/80 max-w-2xl mx-auto">
-              {heroSlides[currentSlide].subtitle}
+            <p className="text-[10px] lg:text-2xl text-white/90 max-w-md lg:max-w-4xl mx-auto font-normal leading-relaxed drop-shadow-md">
+              Immerse yourself in the extraordinary with us takes you on a <br className="hidden md:block" />
+              journey to uncover the world's hidden gems.
             </p>
-          </div>
-
-          {/* Category Tabs */}
-          <div className="mb-8 lg:mb-12">
-            <CategoryTabs />
-          </div>
-
-          {/* Search Panel */}
-          <div className="max-w-5xl mx-auto">
-            <SearchPanel />
-          </div>
-
-          {/* Slide Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentSlide(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  currentSlide === index
-                    ? "w-8 bg-accent"
-                    : "bg-primary-foreground/40"
-                }`}
-              />
-            ))}
           </div>
         </div>
       </div>
+
+      {/* Search Panel Section */}
+      <div className="relative z-20 w-full px-4 -mt-10 lg:-mt-48 mb-2 lg:mb-10 flex justify-center">
+        <div className="w-full max-w-[1440px]">
+          <SearchPanel />
+        </div>
+      </div>
+
     </section>
   );
 };

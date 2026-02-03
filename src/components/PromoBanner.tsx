@@ -1,55 +1,39 @@
-import { Plane } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-import dubaiBg from "@/assets/hero-dubai.jpg";
+import timelessBanner from "@/assets/banner.jpg";
 
 export const PromoBanner = () => {
   return (
-    <section className="py-8 lg:py-16">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="relative overflow-hidden rounded-2xl lg:rounded-3xl">
+    <section className="pt-2 pb-8 lg:py-12 bg-white flex justify-center">
+      <div className="container mx-auto px-4 max-w-[1217.15px] w-full">
+        <div className="relative overflow-hidden rounded-[20px] lg:rounded-[40px] shadow-lg lg:shadow-2xl h-[152px] lg:h-[501.05px] group w-full max-w-[370px] lg:max-w-full mx-auto lg:mx-0">
           {/* Background Image */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-blue-500">
             <img
-              src={dubaiBg}
-              alt="Dubai skyline"
-              className="w-full h-full object-cover"
+              src={timelessBanner}
+              alt="Timeless Holidays"
+              className="w-full h-full object-cover object-right lg:object-center transform transition-transform duration-700 group-hover:scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-primary/40" />
+            {/* Gradient Overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0ea5e9]/90 via-[#0ea5e9]/40 to-transparent lg:hidden" />
+            <div className="hidden lg:block absolute inset-0 bg-gradient-to-r from-blue-600/40 to-transparent" />
           </div>
 
           {/* Content */}
-          <div className="relative z-10 px-6 py-12 md:px-12 md:py-16 lg:px-16 lg:py-20">
-            <div className="max-w-xl">
-              <div className="inline-flex items-center gap-2 bg-accent/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6">
-                <Plane className="h-4 w-4 text-accent" />
-                <span className="text-accent text-sm font-medium">Limited Time Offer</span>
-              </div>
+          <div className="relative z-10 h-full flex flex-col justify-center items-start px-6 lg:px-24 text-left">
+            <h2 className="text-[22px] lg:text-7xl font-bold text-white mb-3 lg:mb-8 leading-tight drop-shadow-md">
+              Timeless Holidays.
+              <br />
+              Unlocked
+            </h2>
 
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-primary-foreground mb-4">
-                Explore Dubai
-                <br />
-                <span className="text-gradient-gold">Like Never Before</span>
-              </h2>
-
-              <p className="text-primary-foreground/80 text-lg mb-8 max-w-md">
-                Experience the magic of Dubai with our exclusive packages. Luxury accommodations, guided tours, and unforgettable memories.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="btn-gold px-8 py-6 text-lg">
-                  Explore Packages
-                </Button>
-                <Button variant="outline" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10 px-8 py-6 text-lg">
-                  Learn More
-                </Button>
-              </div>
-            </div>
-          </div>
-
-          {/* Decorative Plane */}
-          <div className="absolute top-8 right-8 lg:top-12 lg:right-12 opacity-20">
-            <Plane className="h-24 w-24 lg:h-40 lg:w-40 text-primary-foreground transform rotate-45" />
+            <Button
+              className="bg-white text-[#1e293b] hover:bg-slate-50 transition-all rounded-full w-[110px] lg:w-[212.07px] h-[30px] lg:h-[52px] flex items-center justify-center text-[10px] lg:text-lg font-bold shadow-sm"
+            >
+              Explore Now
+              <ArrowRight className="ml-1.5 h-3 w-3 lg:ml-2 lg:h-5 lg:w-5" />
+            </Button>
           </div>
         </div>
       </div>

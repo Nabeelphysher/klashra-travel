@@ -2,23 +2,19 @@ import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 
 const footerLinks = {
-  company: [
-    { label: "About Us", path: "/about" },
-    { label: "Careers", path: "/careers" },
-    { label: "Press", path: "/press" },
-    { label: "Blog", path: "/blog" },
-  ],
   services: [
     { label: "Holidays", path: "/" },
-    { label: "Visa Services", path: "/visa" },
-    { label: "Flights", path: "/flight" },
-    { label: "Hotels", path: "/hotel" },
+    { label: "Activities", path: "/activities" },
+    { label: "Flight", path: "/flight" },
+    { label: "Hotel", path: "/hotel" },
+    { label: "Visa", path: "/visa" },
   ],
-  support: [
-    { label: "Help Center", path: "/help" },
-    { label: "Contact Us", path: "/contact" },
+  company: [
+    { label: "About Us", path: "/about" },
+    { label: "Contact", path: "/contact" },
+    { label: "Blog", path: "/blog" },
     { label: "Privacy Policy", path: "/privacy" },
-    { label: "Terms of Service", path: "/terms" },
+    { label: "Terms & Conditions", path: "/terms" },
   ],
 };
 
@@ -31,108 +27,146 @@ const socialLinks = [
 
 export const Footer = () => {
   return (
-    <footer className="bg-primary text-primary-foreground">
-      <div className="container mx-auto px-4 lg:px-8 py-12 lg:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand */}
-          <div className="lg:col-span-2">
-            <Link to="/" className="inline-block mb-6">
-              <span className="text-3xl font-serif font-bold">Klashra</span>
-            </Link>
-            <p className="text-primary-foreground/70 mb-6 max-w-sm">
-              Your trusted travel partner for unforgettable journeys. Discover the world with confidence and style.
-            </p>
-            
-            {/* Contact Info */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-primary-foreground/70">
-                <Phone className="h-4 w-4" />
-                <span>+971 4 123 4567</span>
-              </div>
-              <div className="flex items-center gap-3 text-primary-foreground/70">
-                <Mail className="h-4 w-4" />
-                <span>hello@klashra.com</span>
-              </div>
-              <div className="flex items-center gap-3 text-primary-foreground/70">
-                <MapPin className="h-4 w-4" />
-                <span>Dubai, United Arab Emirates</span>
+    <footer className="bg-[#223544] text-white flex flex-col py-8 lg:pt-[88px] lg:pb-12">
+      <div className="container mx-auto px-6 max-w-7xl">
+        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-y-8 lg:gap-x-8 mb-8 lg:mb-12">
+
+          {/* Mobile Header: Logo + Follow Us */}
+          <div className="lg:hidden flex justify-between items-start mb-2">
+            <div>
+              <Link to="/" className="flex flex-col">
+                <span className="text-3xl font-sans font-bold tracking-wide text-[#98D5D4] leading-none">KLASHRA</span>
+                <span className="block text-[8px] uppercase tracking-[0.2em] text-white/80 mt-1">TRAVEL & TOURISM</span>
+              </Link>
+            </div>
+            <div className="flex flex-col items-end">
+              <h4 className="font-semibold text-sm mb-2">Follow Us</h4>
+              <div className="flex items-center gap-2">
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <a
+                      key={index}
+                      href={social.href}
+                      className="w-6 h-6 rounded-full border border-white/60 flex items-center justify-center text-white hover:bg-[#99f6e4] hover:text-[#223544] transition-all"
+                    >
+                      <Icon className="h-3 w-3" />
+                    </a>
+                  );
+                })}
               </div>
             </div>
           </div>
 
-          {/* Company Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Company</h4>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Desktop Brand Column */}
+          <div className="hidden lg:flex lg:col-span-5 flex-col items-start">
+            <Link to="/" className="flex flex-col mb-10">
+              <span className="text-4xl font-sans font-bold tracking-wide text-[#98D5D4] leading-none">KLASHRA</span>
+              <span className="block text-[10px] uppercase tracking-[0.2em] text-white/80 mt-1">TRAVEL & TOURISM</span>
+            </Link>
+            {/* Contact Details (Desktop) */}
+            <div className="space-y-5">
+              <div className="flex items-center gap-4 text-white/90">
+                <div className="w-5 h-5 flex items-center justify-center"><Phone className="h-5 w-5" /></div>
+                <span className="text-base font-medium">+971 52 395 1234</span>
+              </div>
+              <div className="flex items-center gap-4 text-white/90">
+                <div className="w-5 h-5 flex items-center justify-center"><Mail className="h-5 w-5" /></div>
+                <span className="text-base font-medium">Info@klashratravel.com</span>
+              </div>
+              <div className="flex items-start gap-4 text-white/90">
+                <div className="w-5 h-5 mt-1 flex items-center justify-center"><MapPin className="h-5 w-5" /></div>
+                <span className="text-base font-medium leading-relaxed">
+                  New Al Safiya Building M Floor
+                  <br />
+                  Office No: M22 Near Abuhail Metro Station
+                </span>
+              </div>
+            </div>
           </div>
 
-          {/* Services Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Services</h4>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Contact Details (Mobile Only - positioned as 2nd item) */}
+          <div className="lg:hidden space-y-3 mb-2">
+            <div className="flex items-center gap-3 text-white/90">
+              <Phone className="h-4 w-4" />
+              <span className="text-sm font-medium">+971 52 395 1234</span>
+            </div>
+            <div className="flex items-center gap-3 text-white/90">
+              <Mail className="h-4 w-4" />
+              <span className="text-sm font-medium">Info@klashratravel.com</span>
+            </div>
+            <div className="flex items-start gap-3 text-white/90">
+              <MapPin className="h-4 w-4 mt-0.5" />
+              <span className="text-sm font-medium leading-snug">
+                New Al Safiya Building M Floor Office No: M22
+                <br />
+                Near Abuhail Metro Station
+              </span>
+            </div>
           </div>
 
-          {/* Support Links */}
-          <div>
-            <h4 className="font-semibold mb-4">Support</h4>
-            <ul className="space-y-3">
-              {footerLinks.support.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-primary-foreground/70 hover:text-accent transition-colors"
+          {/* Link Columns */}
+          <div className="col-span-12 lg:col-span-4 grid grid-cols-2 gap-8 lg:gap-8">
+            {/* Our Services */}
+            <div>
+              <h4 className="font-semibold text-lg lg:text-xl mb-4 lg:mb-8">Our Services</h4>
+              <ul className="space-y-2 lg:space-y-4">
+                {footerLinks.services.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-white/70 hover:text-[#99f6e4] transition-colors text-sm lg:text-base"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Company */}
+            <div>
+              <h4 className="font-semibold text-lg lg:text-xl mb-4 lg:mb-8">Company</h4>
+              <ul className="space-y-2 lg:space-y-4">
+                {footerLinks.company.map((link) => (
+                  <li key={link.path}>
+                    <Link
+                      to={link.path}
+                      className="text-white/70 hover:text-[#99f6e4] transition-colors text-sm lg:text-base"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Follow Us - Desktop Only */}
+          <div className="hidden lg:block col-span-3">
+            <h4 className="font-semibold text-xl mb-8">Follow Us</h4>
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social, index) => {
+                const Icon = social.icon;
+                return (
+                  <a
+                    key={index}
+                    href={social.href}
+                    className="w-10 h-10 rounded-full border border-white/80 flex items-center justify-center text-white hover:bg-[#99f6e4] hover:text-[#223544] hover:border-[#99f6e4] transition-all duration-300"
                   >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+                    <Icon className="h-5 w-5" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-primary-foreground/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-primary-foreground/50 text-sm">
-            © {new Date().getFullYear()} Klashra. All rights reserved.
+        <div className="border-t border-white/10 pt-6 lg:pt-8 text-center">
+          <p className="text-white/50 text-[10px] lg:text-sm uppercase tracking-widest">
+            @ copyright 2025 - Klashra
           </p>
-          
-          {/* Social Links */}
-          <div className="flex items-center gap-4">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon;
-              return (
-                <a
-                  key={index}
-                  href={social.href}
-                  className="text-primary-foreground/50 hover:text-accent transition-colors"
-                >
-                  <Icon className="h-5 w-5" />
-                </a>
-              );
-            })}
-          </div>
         </div>
       </div>
     </footer>

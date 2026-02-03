@@ -1,22 +1,18 @@
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { DestinationCard } from "./DestinationCard";
 
-import baliBg from "@/assets/destination-bali.jpg";
-import santoriniBg from "@/assets/destination-santorini.jpg";
-import switzerlandBg from "@/assets/destination-switzerland.jpg";
-import thailandBg from "@/assets/destination-thailand.jpg";
-import maldivesBg from "@/assets/destination-maldives.jpg";
-import parisBg from "@/assets/destination-paris.jpg";
+// Using placeholders/existing assets but mapping to requested destinations
+import azerbaijanBg from "@/assets/azerbaijan.png";
+import georgiaBg from "@/assets/destination-santorini.jpg";
+import armeniaBg from "@/assets/destination-switzerland.jpg";
+import kazakhstanBg from "@/assets/destination-thailand.jpg";
 
 const destinations = [
-  { image: baliBg, destination: "Bali", nights: 5, days: 6, price: 2499 },
-  { image: santoriniBg, destination: "Santorini", nights: 4, days: 5, price: 3299 },
-  { image: switzerlandBg, destination: "Switzerland", nights: 6, days: 7, price: 4599 },
-  { image: thailandBg, destination: "Thailand", nights: 5, days: 6, price: 1899 },
-  { image: maldivesBg, destination: "Maldives", nights: 4, days: 5, price: 3999 },
-  { image: parisBg, destination: "Paris", nights: 4, days: 5, price: 2899 },
+  { image: azerbaijanBg, destination: "Azerbaijan", nights: 3, days: 4, price: 1800 },
+  { image: georgiaBg, destination: "Georgia", nights: 4, days: 5, price: 1950 },
+  { image: armeniaBg, destination: "Armenia", nights: 3, days: 4, price: 2050 },
+  { image: kazakhstanBg, destination: "Kazakhstan", nights: 3, days: 4, price: 1800 },
 ];
 
 export const BudgetHolidays = () => {
@@ -24,7 +20,7 @@ export const BudgetHolidays = () => {
 
   const scroll = (direction: "left" | "right") => {
     if (scrollRef.current) {
-      const scrollAmount = 320;
+      const scrollAmount = 350;
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -33,36 +29,31 @@ export const BudgetHolidays = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-2 lg:py-8 bg-white overflow-hidden">
+      <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
-        <div className="flex items-end justify-between mb-8 lg:mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-3">
-              Budget Holidays
-            </h2>
-            <p className="text-muted-foreground text-lg max-w-xl">
-              Discover incredible destinations at unbeatable prices. Your dream vacation awaits.
-            </p>
-          </div>
-          
-          {/* Navigation Arrows */}
+        <div className="flex items-center justify-between mb-2 lg:mb-4">
+          <h2 className="font-['Inter'] font-bold text-2xl lg:text-[32px] text-[#233F50]">
+            Budget Holidays
+          </h2>
+
+          {/* Navigation Arrows - Desktop */}
           <div className="hidden md:flex items-center gap-2">
             <Button
-              variant="outline"
+              variant="ghost"
               size="icon"
               onClick={() => scroll("left")}
-              className="rounded-full border-border hover:bg-secondary"
+              className="rounded-full text-[#233F50] hover:bg-slate-50 bg-transparent border border-slate-200 w-8 h-8"
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-4 w-4" />
             </Button>
             <Button
               variant="outline"
               size="icon"
               onClick={() => scroll("right")}
-              className="rounded-full border-border hover:bg-secondary"
+              className="rounded-full text-white hover:bg-[#1a2f3d] bg-[#233F50] border-[#233F50] w-8 h-8"
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-4 w-4" />
             </Button>
           </div>
         </div>
@@ -70,29 +61,43 @@ export const BudgetHolidays = () => {
         {/* Carousel */}
         <div
           ref={scrollRef}
-          className="flex gap-4 md:gap-6 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 lg:-mx-0 lg:px-0"
+          className="flex gap-4 lg:gap-6 overflow-x-auto scrollbar-hide pb-3 -mx-4 px-4 lg:mx-0 lg:px-0"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {destinations.map((dest, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-[280px] md:w-[300px]"
+              className="flex-shrink-0 group cursor-pointer w-[224px] lg:w-[285.62px]"
               style={{ scrollSnapAlign: "start" }}
             >
-              <DestinationCard {...dest} />
-            </div>
-          ))}
-        </div>
+              <div className="relative rounded-[20px] lg:rounded-[28px] overflow-hidden h-[237px] lg:h-auto lg:aspect-[1.1] shadow-md border border-slate-100">
+                <img
+                  src={dest.image}
+                  alt={dest.destination}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
 
-        {/* Mobile Navigation Dots */}
-        <div className="flex justify-center gap-2 mt-6 md:hidden">
-          {destinations.slice(0, 4).map((_, index) => (
-            <div
-              key={index}
-              className={`w-2 h-2 rounded-full ${
-                index === 0 ? "bg-accent" : "bg-border"
-              }`}
-            />
+                {/* Content Overlay */}
+                <div className="absolute inset-x-0 bottom-0 p-4 lg:p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col justify-end h-3/4">
+                  <h3 className="text-white font-['Inter'] font-bold text-[20px] lg:text-3xl mb-1.5 lg:mb-2">
+                    {dest.destination}
+                  </h3>
+
+                  <div className="flex gap-2 mb-2 lg:mb-3">
+                    <span className="bg-white/15 backdrop-blur-md text-white text-[9px] lg:text-[10px] font-bold px-2.5 lg:px-3 py-1 lg:py-1.5 rounded-lg border border-white/20">
+                      {dest.nights} Nights
+                    </span>
+                    <span className="bg-white/15 backdrop-blur-md text-white text-[9px] lg:text-[10px] font-bold px-2.5 lg:px-3 py-1 lg:py-1.5 rounded-lg border border-white/20">
+                      {dest.days} Days
+                    </span>
+                  </div>
+
+                  <p className="text-white/90 text-xs lg:text-sm font-medium">
+                    Starts From <span className="font-bold text-[#98D5D4]">AED {dest.price}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

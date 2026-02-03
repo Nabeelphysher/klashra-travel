@@ -1,56 +1,71 @@
+import { useNavigate } from "react-router-dom";
 import { CountryCard } from "./CountryCard";
 
 import uaeImg from "@/assets/country-uae.jpg";
-import ukImg from "@/assets/country-uk.jpg";
-import usaImg from "@/assets/country-usa.jpg";
-import australiaImg from "@/assets/country-australia.jpg";
-import canadaImg from "@/assets/country-canada.jpg";
-import schengenImg from "@/assets/country-schengen.jpg";
-import japanImg from "@/assets/country-japan.jpg";
-import singaporeImg from "@/assets/country-singapore.jpg";
+import omanImg from "@/assets/hero-maldives.jpg"; // Placeholder
+import qatarImg from "@/assets/hero-dubai.jpg";   // Placeholder
+import hongkongImg from "@/assets/country-japan.jpg"; // Placeholder
+import saudiImg from "@/assets/country-usa.jpg";  // Placeholder
+import azerbaijanImg from "@/assets/azerbaijan.png";
+import armeniaImg from "@/assets/destination-switzerland.jpg";
+import uzbekistanImg from "@/assets/destination-thailand.jpg";
 
 const countries = [
-  { image: uaeImg, country: "UAE" },
-  { image: ukImg, country: "United Kingdom" },
-  { image: usaImg, country: "United States" },
-  { image: australiaImg, country: "Australia" },
-  { image: canadaImg, country: "Canada" },
-  { image: schengenImg, country: "Schengen" },
-  { image: japanImg, country: "Japan" },
-  { image: singaporeImg, country: "Singapore" },
+  { image: uaeImg, country: "United Arab Emirates" },
+  { image: omanImg, country: "Oman" },
+  { image: qatarImg, country: "Qatar" },
+  { image: hongkongImg, country: "Hong Kong" },
+  { image: saudiImg, country: "Saudi Arabia" },
+  { image: azerbaijanImg, country: "Azerbaijan" },
+  { image: armeniaImg, country: "Armenia" },
+  { image: uzbekistanImg, country: "Uzbekistan" },
 ];
 
 export const VisaCountryGrid = () => {
+  const navigate = useNavigate();
+
   return (
-    <section className="py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 lg:px-8">
+    <section className="py-4 lg:py-12 bg-white">
+      <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-foreground mb-4">
-            Popular Destinations
+        <div className="mb-4 lg:mb-10">
+          <h2
+            className="font-['Inter'] font-semibold text-[#233F50] mb-2"
+            style={{
+              fontSize: 'clamp(28px, 5vw, 40px)',
+              lineHeight: '1.2',
+              letterSpacing: '-0.03em', // -3%
+            }}
+          >
+            Enjoy Visa Services
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Select your destination country to explore visa requirements and begin your application.
-          </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-6">
           {countries.map((country, index) => (
-            <CountryCard
+            <div
               key={index}
-              image={country.image}
-              country={country.country}
-            />
-          ))}
-        </div>
+              onClick={() => navigate(`/visa/${encodeURIComponent(country.country)}`)}
+              className="group bg-white rounded-[10px] lg:rounded-[16px] border border-slate-200 p-2 lg:p-2.5 transition-all duration-300 hover:shadow-lg cursor-pointer"
+            >
+              {/* Image Container */}
+              <div className="relative overflow-hidden rounded-[8px] lg:rounded-[12px] h-[100px] sm:h-[120px] lg:h-[180px] w-full">
+                <img
+                  src={country.image}
+                  alt={country.country}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
 
-        {/* View All CTA */}
-        <div className="text-center mt-12">
-          <button className="inline-flex items-center gap-2 text-accent font-medium hover:underline">
-            View all countries
-            <span>→</span>
-          </button>
+              {/* Country Name */}
+              <div className="mt-3 mb-1 px-1">
+                <h3 className="text-[#233F50] font-bold lg:font-medium text-[12px] lg:text-base text-left leading-tight">
+                  {country.country}
+                </h3>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
